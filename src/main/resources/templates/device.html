@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Device</title>
+    <link rel="icon" type="image/png" href="../img/icon.png">
+    <link rel="stylesheet" th:href="@{/css/main.css}"
+          href="../static/css/main.css"/>
+    <link rel="stylesheet" th:href="@{/css/device.css}"
+          href="../static/css/device.css"/>
+    <script type="text/javascript" th:src="@{/js/device.js}"
+            src="../static/js/device.js"></script>
+</head>
+<body>
+    <div id="info"></div>
+    <div id="map"></div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlpmccHtCdoiW29U9td3EHSBeaM4pt-B4&callback=initMap">
+    </script>
+</body>
+</html>

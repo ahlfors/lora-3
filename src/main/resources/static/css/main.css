@@ -1,0 +1,48 @@
+.main-container{
+    margin: 5% 8% 0;
+    padding: 1% 1%;
+    text-align: center;
+    border: 1px solid crimson;
+}
+
+.text-result{
+    margin: 0 10% 10px;
+    padding: 15px 3%;
+}
+
+.message-table{
+    border: 1px solid burlywood;
+    margin: auto;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+}
+
+.message-table tfoot tr:nth-child(odd) {background-color: white}
+.message-table tfoot tr:nth-child(even) {background-color: azure}
+
+.message-table thead tr td{
+    background-color: grey;
+    color: white;
+    word-wrap: break-word;
+    word-break: normal;
+}
+
+.message-table tr td{
+    border: 1px solid grey;
+    padding: 1px 25px;
+}
+
+.button-container{
+    margin: 0 8% 8%;
+    padding: 1% 5px 1% 10%;
+    float: right;
+    display: block;
+}
+
+body {
+    background: url(../img/bg.jpg) no-repeat;
+    -moz-background-size: 100%;
+    -webkit-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%; /
+}

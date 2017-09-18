@@ -1,0 +1,17 @@
+table{
+    border: 1px solid burlywood;
+    margin: auto;
+    font-family: "Courier New", Courier, monospace;
+}
+
+table th, td {
+    padding: 5px 20px 5px 15px;
+    word-wrap: break-word;
+    word-break: break-all;
+    width: 100%;
+    text-align: center;
+}
+
+.column{
+    width: 400px;
+}
