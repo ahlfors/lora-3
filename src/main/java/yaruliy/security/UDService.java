@@ -1,5 +1,5 @@
 package yaruliy.security;
-import org.springframework.beans.factory.annotation.Autowired;
+/*import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import yaruliy.datastore.UserService;
 import yaruliy.model.User;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;*/
 
-@Service
-public class UDService implements UserDetailsService{
-    private UserService userService;
+/*@Service*/
+public class UDService /*implements UserDetailsService*/{
+    /*private UserService userService;
     @Autowired
     public void setUserService(UserService userService){ this.userService = userService; }
 
@@ -33,5 +33,5 @@ public class UDService implements UserDetailsService{
                 true,
                 true,
                 gas);
-    }
+    }*/
 }

@@ -20,7 +20,5 @@ public class UserController{
     }
 
     @RequestMapping(value = "get/{login}", method = RequestMethod.GET)
-    public String getUser(@PathVariable String login){
-        return userService.findByLogin(login).toString();
-    }
+    public String getUser(@PathVariable String login){ return userService.findByLogin(login).toString(); }
 }

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/rest")
+@RequestMapping(value = "/lora")
 public class DataController {
     private MessageService messageService;
     @Autowired public void setMessageService(MessageService messageService) { this.messageService = messageService; }

@@ -24,7 +24,7 @@ function initMap() {
                 else reject("error");
             }
         };
-        var url = window.location.protocol +"//"+ window.location.host +"/rest"+ window.location.pathname;
+        var url = window.location.protocol +"//"+ window.location.host +"/lora"+ window.location.pathname;
         request.open("GET", url);
         request.send();
     });

@@ -46,13 +46,22 @@ public class CassandraDeviceService implements DeviceService{
     @Override
     public Device getDeviceByLoraID(String id) {
         openSession();
-        String query = "SELECT * FROM Lora.devices WHERE loraid = " + "'" + id + "'" + " ALLOW FILTERING ;";
-        MappingManager manager = new MappingManager(session);
-        Mapper<Device> mapper = manager.mapper(Device.class);
-        ResultSet results = session.execute(query);
-        Device result = mapper.map(results).iterator().next();
-        if(result == null) return new Device();
-        return result;
+
+        if(containsDevice(id)){
+            String query = "SELECT * FROM Lora.devices WHERE loraid = " + "'" + id + "'" + " ALLOW FILTERING ;";
+            MappingManager manager = new MappingManager(session);
+            Mapper<Device> mapper = manager.mapper(Device.class);
+            ResultSet results = session.execute(query);
+            Device result = mapper.map(results).iterator().next();
+            if(result == null) return new Device();
+            return result;
+        }
+        else {
+            Device device = new Device();
+            device.setLoraid(id);
+            device.setUuid(UUID.randomUUID());
+            return device;
+        }
     }
 
     @Override
@@ -110,7 +119,6 @@ public class CassandraDeviceService implements DeviceService{
         MappingManager manager = new MappingManager(session);
         Mapper<Device> mapper = manager.mapper(Device.class);
         ResultSet results = session.execute(q);
-        boolean b = results.one().getLong("count") > 0;
-        return b;
+        return results.one().getLong("count") > 0;
     }
 }

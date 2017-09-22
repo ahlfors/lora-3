@@ -32,7 +32,7 @@ public class CassandraMessageService implements MessageService {
     @Override
     public List<JSONLoraMessage> getMessagesByUserLogin(String login) {
         openSession();
-        String query = "SELECT * FROM Lora.messages WHERE userid = " + "'" + login + "'" + " ALLOW FILTERING ;";
+        String query = "SELECT * FROM Lora.messages;";// WHERE userid = " + "'" + login + "'" + " ALLOW FILTERING ;";
         MappingManager manager = new MappingManager(session);
         Mapper<JSONLoraMessage> mapper = manager.mapper(JSONLoraMessage.class);
         Result<JSONLoraMessage> messages = mapper.map(session.execute(query));
@@ -65,7 +65,8 @@ public class CassandraMessageService implements MessageService {
                         + "tmst text,"
                         + "freq text,"
                         + "size text,"
-                        + "userID text"
+                        + "userID text,"
+                        + "source text"
                         + ");";
 
         System.out.println("---------------Before build: " + this.address);

@@ -24,7 +24,11 @@ public class JSONLoraMessage{
     private UUID uuid;
     @Column
     private String userID;
+    @Column
+    private String source;
 
+    public String getSource() { return source; }
+    public void setSource(String source) { this.source = source; }
     public String getUserID() { return userID; }
     public void setUserID(String userID) { this.userID = userID; }
     public String getData() { return data; }

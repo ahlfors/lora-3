@@ -25,6 +25,6 @@ var getMessages = function(){
         }
     };
     console.log();
-    request.open("GET", "/rest/devices");
+    request.open("GET", "/lora/devices");
     request.send();
 };
