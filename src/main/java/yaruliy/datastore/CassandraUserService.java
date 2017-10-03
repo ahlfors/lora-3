@@ -24,7 +24,9 @@ public class CassandraUserService implements UserService{
         MappingManager manager = new MappingManager(session);
         Mapper<User> mapper = manager.mapper(User.class);
         ResultSet results = session.execute(query);
-        return mapper.map(results).iterator().next();
+        if(mapper.map(results).iterator().hasNext())
+            return mapper.map(results).iterator().next();
+        else return new User();
     }
 
     @Override
@@ -46,7 +48,8 @@ public class CassandraUserService implements UserService{
                         + "login text,"
                         + "password text,"
                         + "name text,"
-                        + "surname text"
+                        + "surname text,"
+                        + "emails list<text>"
                         + ");";
 
         Cluster.builder().addContactPoint(address).build().connect().execute(createKeySpace);

@@ -1,19 +1,12 @@
 package yaruliy.model.json;
-import com.datastax.driver.mapping.annotations.Column;
-import com.datastax.driver.mapping.annotations.Table;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Arrays;
 import java.util.UUID;
 
-@Table(keyspace="Lora", name = "messages")
 public class JSONMessage{
-    @Column
     private String timestamp;
-    @Column
     private String coords;
-    @Column
     private int userID;
-    @Column
     private UUID id;
 
     public JSONMessage(){}
@@ -32,9 +25,6 @@ public class JSONMessage{
                        @JsonProperty("userID") int userID,
                        @JsonProperty("id") UUID id){
         this.timestamp = timestamp;
-        //String[] ss = coords.split(",");
-        //int[] array = new int[ss.length];
-        //for (int i = 0; i < ss.length; i++){ array[i] = Integer.parseInt(ss[i]); }
         this.coords = coords;
         this.id = id;
         this.userID = userID;

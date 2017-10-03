@@ -1,5 +1,6 @@
 package yaruliy.controllers.views;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,4 +20,13 @@ public class PageController{
 
     @RequestMapping(value = {"/", "/devices"}, method = RequestMethod.GET)
     public String devicesPage(){ return "devices"; }
+
+    @RequestMapping(value = "/settings", method = RequestMethod.GET)
+    public String settingsPage(){ return "settings"; }
+
+    @RequestMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login";
+    }
 }

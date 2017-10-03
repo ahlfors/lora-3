@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 var getMessages = function(){
-    document.title = "Lora";
     document.getElementById("table").innerHTML = '';
     var request = new XMLHttpRequest;
     request.onreadystatechange = function () {
@@ -18,22 +17,23 @@ var getMessages = function(){
             headerRow.insertCell(3).innerHTML = "<b>FREQ</b>";
             headerRow.insertCell(4).innerHTML = "<b>UserID</b>";
             headerRow.insertCell(5).innerHTML = "<b>Source</b>";
-            headerRow.insertCell(6).innerHTML = "<b>Size</b>";
+            headerRow.insertCell(6).innerHTML = "<b>Topic</b>";
+            headerRow.insertCell(7).innerHTML = "<b>Size</b>";
 
             var foot = table.createTFoot();
             for (var i = 0; i < data.length; i++) {
                 var row = foot.insertRow(i);
-                row.insertCell(0).innerHTML = data[i]["uuid"].substring(0, 20);
+                row.insertCell(0).innerHTML = data[i]["uuid"].substring(0, 8);
                 row.insertCell(1).innerHTML = data[i]["tmst"];
                 row.insertCell(2).innerHTML = data[i]["data"];
                 row.insertCell(3).innerHTML = data[i]["freq"];
                 row.insertCell(4).innerHTML = data[i]["userID"];
                 row.insertCell(5).innerHTML = data[i]["source"];
-                row.insertCell(6).innerHTML = data[i]["size"];
+                row.insertCell(6).innerHTML = data[i]["topic"];
+                row.insertCell(7).innerHTML = data[i]["size"];
             }
         }
     };
-    console.log();
     request.open("GET", "/lora/messages", false);
     request.send();
 };

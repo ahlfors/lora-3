@@ -2,7 +2,6 @@ package yaruliy.sockets;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import yaruliy.datastore.DeviceService;
 import yaruliy.datastore.MessageService;
@@ -10,6 +9,7 @@ import yaruliy.model.Device;
 import yaruliy.model.json.JSONData;
 import yaruliy.model.json.JSONLoraMessage;
 import yaruliy.model.json.JSONRxpk;
+import javax.annotation.PostConstruct;
 import java.net.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,19 +21,18 @@ public class LoraUDPSocketServer implements SocketServer{
     private DatagramSocket socket;
     private boolean running;
     private byte[] buf = new byte[256];
+    private String address;
+
     private MessageService messageService;
     @Autowired public void setMessageService(MessageService messageService) { this.messageService = messageService; }
     private DeviceService deviceService;
     @Autowired public void setDeviceService(DeviceService deviceService) { this.deviceService = deviceService; }
     private ObjectMapper mapper;
     @Autowired public void setMapper(ObjectMapper mapper) {this.mapper = mapper; }
-    @Value("${socket.address}")
-    private String address;
 
     @Override
     public void start() {
         Runnable runnable = () -> {
-            System.out.println("UPD Address: " + address);
             running = true;
             while (running) {
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -87,5 +86,14 @@ public class LoraUDPSocketServer implements SocketServer{
     public void init() {
         try { socket = new DatagramSocket(new InetSocketAddress(address, 40000)); }
         catch (SocketException e) { e.printStackTrace(); }
+    }
+
+    @PostConstruct
+    public void setSocketAddres(){
+        System.out.println("os.version: {" + System.getProperty("os.version") + "}");
+        if(System.getProperty("os.version").equals("4.10.0-35-generic"))
+            this.address = "127.0.0.1";
+        else this.address = "ec2-34-210-69-19.us-west-2.compute.amazonaws.com";
+        System.out.println("socket.address: " + this.address);
     }
 }

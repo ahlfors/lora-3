@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Devices</title>
+    <meta charset="UTF-8">
+    <title>Settings</title>
     <link rel="icon" type="image/png" href="../img/icon.png">
     <link rel="stylesheet" th:href="@{/css/main.css}"
           href="../static/css/main.css"/>
-    <script type="text/javascript" th:src="@{/js/devices.js}"
-            src="../static/js/devices.js"></script>
+    <script type="text/javascript" th:src="@{/js/settings.js}"
+            src="../static/js/settings.js"></script>
 </head>
 <body>
     <div class="main-container">
         <table id="table" class="message-table"></table>
+        <div style="margin-top: 1%;">
+            <input class="column" name="email" id="email" placeholder="enter new e-mail"/>
+            <input name="registration" type="submit" value="add e-mail" id="addemail"/>
+        </div>
     </div>
+
     <div class="button-container">
         <form action="/logout" method="post">
-            <input name="settings" type="button" value="Settings" onclick="window.location='/settings';"/>
+            <input name="devices" type="button" value="Devices" onclick="window.location='/devices';"/>
             <input name="messages" type="button" value="Messages" onclick="window.location='/messages';"/>
             <button class="button">Logout</button>
         </form>
     </div>
+    <div id="reg-text-result" class="text-result"></div>
 </body>
 </html>

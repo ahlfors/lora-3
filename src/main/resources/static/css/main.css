@@ -14,7 +14,7 @@
     border: 1px solid burlywood;
     margin: auto;
     font-family: "Courier New", Courier, monospace;
-    font-size: 13px;
+    font-size: 0.75em;
 }
 
 .message-table tfoot tr:nth-child(odd) {background-color: white}
@@ -44,5 +44,5 @@ body {
     -moz-background-size: 100%;
     -webkit-background-size: 100%;
     -o-background-size: 100%;
-    background-size: 100%; /
+    background-size: 100%;
 }

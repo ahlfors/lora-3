@@ -7,11 +7,13 @@ var saveUser = function(){
     var passwordInput = document.getElementById("password");
     var nameInput = document.getElementById("name");
     var surnameInput = document.getElementById("surname");
+    var emailInput= document.getElementById("email");
 
     if (loginInput.value.toString()==='' ||
         passwordInput.value.toString()==='' ||
         nameInput.value.toString()==='' ||
-        surnameInput.value.toString()===''){
+        surnameInput.value.toString()==='' ||
+        emailInput.value.toString()===''){
         printResult("Fill out all fields!!!");
         return;
     }
@@ -26,6 +28,7 @@ var saveUser = function(){
     data.append("password", passwordInput.value.toString());
     data.append("name", nameInput.value.toString());
     data.append("surname", surnameInput.value.toString());
+    data.append("email", emailInput.value.toString());
 
     var request = new XMLHttpRequest;
     request.onreadystatechange = function() {

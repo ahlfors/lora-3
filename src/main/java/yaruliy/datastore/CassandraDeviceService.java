@@ -7,6 +7,8 @@ import com.datastax.driver.mapping.MappingManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import yaruliy.model.Device;
+
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -105,7 +107,9 @@ public class CassandraDeviceService implements DeviceService{
                         + "uuid uuid PRIMARY KEY,"
                         + "loraid text,"
                         + "longitude double,"
-                        + "latitude double"
+                        + "latitude double,"
+                        + "lastUsedGateway text,"
+                        + "lastUsedGatewayDate date"
                         + ");";
 
         Cluster.builder().addContactPoint(address).build().connect().execute(createKeySpace);
@@ -120,5 +124,10 @@ public class CassandraDeviceService implements DeviceService{
         Mapper<Device> mapper = manager.mapper(Device.class);
         ResultSet results = session.execute(q);
         return results.one().getLong("count") > 0;
+    }
+
+    @PostConstruct
+    public void postConstruct() {
+        prepareDataBase();
     }
 }

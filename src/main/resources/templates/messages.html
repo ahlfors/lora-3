@@ -14,8 +14,9 @@
         <table id="table" class="message-table"></table>
     </div>
     <div class="button-container">
-        <input name="devices" type="button" value="Devices" onclick="window.location='/devices';"/>
         <form action="/logout" method="post">
+            <input name="settings" type="button" value="Settings" onclick="window.location='/settings';"/>
+            <input name="devices" type="button" value="Devices" onclick="window.location='/devices';"/>
             <button class="button">Logout</button>
         </form>
     </div>

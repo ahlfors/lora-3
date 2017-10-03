@@ -11,22 +11,18 @@ import java.util.UUID;
 @Table(keyspace="Lora", name = "messages")
 @JsonIgnoreProperties(value = { "chan","rfch","stat","modu", "datr", "codr", "lsnr","rssi", })
 public class JSONLoraMessage{
-    @Column
-    private String data;
-    @Column
-    private String tmst;
-    @Column
-    private String freq;
-    @Column
-    private String size;
-    @Column
     @PartitionKey
-    private UUID uuid;
-    @Column
-    private String userID;
-    @Column
-    private String source;
+    @Column private UUID uuid;
+    @Column private String data;
+    @Column private String tmst;
+    @Column private String freq;
+    @Column private String size;
+    @Column private String userID;
+    @Column private String source;
+    @Column private String topic;
 
+    public String getTopic() { return topic; }
+    public void setTopic(String topic) { this.topic = topic; }
     public String getSource() { return source; }
     public void setSource(String source) { this.source = source; }
     public String getUserID() { return userID; }

@@ -66,10 +66,9 @@ public class CassandraMessageService implements MessageService {
                         + "freq text,"
                         + "size text,"
                         + "userID text,"
-                        + "source text"
+                        + "source text,"
+                        + "topic text"
                         + ");";
-
-        System.out.println("---------------Before build: " + this.address);
         Cluster.builder().addContactPoint(address).build().connect().execute(createKeySpace);
         Cluster.builder().addContactPoint(address).build().connect().execute(createTable);
     }
@@ -90,6 +89,5 @@ public class CassandraMessageService implements MessageService {
     @PostConstruct
     public void postConstruct() {
         prepareDataBase();
-        System.out.println("---------------After postConstruct: " + this.address);
     }
 }
