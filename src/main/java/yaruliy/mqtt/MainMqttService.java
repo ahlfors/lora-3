@@ -3,7 +3,7 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import yaruliy.mqtt.util.BasicCallback;
+import yaruliy.mqtt.calls.BasicCallback;
 import yaruliy.mqtt.util.MqttServiceBuilder;
 
 @Component
@@ -20,7 +20,7 @@ public class MainMqttService {
                 MqttClient client = MqttServiceBuilder.connect(BROKER_URL, "Lora_SUB");
                 client.setCallback(this.mqttCallback);
                 this.mqttCallback.setDefaultClient(MqttServiceBuilder.connect(BROKER_URL, "Lora_PUB"));
-                String[] topics = {"lora/messages","lora/coordinates"};
+                String[] topics = {"lora/messages","lora/coordinates", "lora/test"};
                 client.subscribe(topics);
             }
             catch (MqttException e) { e.printStackTrace(); }

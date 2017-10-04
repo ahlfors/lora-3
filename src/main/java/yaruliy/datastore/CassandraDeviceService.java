@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import yaruliy.model.Device;
 
 import javax.annotation.PostConstruct;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -62,6 +63,8 @@ public class CassandraDeviceService implements DeviceService{
             Device device = new Device();
             device.setLoraid(id);
             device.setUuid(UUID.randomUUID());
+            device.setLastUsedGateway("06-00-00-00-00-00");
+            device.setLastUsedGatewayDate(new Timestamp(System.currentTimeMillis()));
             return device;
         }
     }
@@ -109,7 +112,7 @@ public class CassandraDeviceService implements DeviceService{
                         + "longitude double,"
                         + "latitude double,"
                         + "lastUsedGateway text,"
-                        + "lastUsedGatewayDate date"
+                        + "lastUsedGatewayDate timestamp"
                         + ");";
 
         Cluster.builder().addContactPoint(address).build().connect().execute(createKeySpace);

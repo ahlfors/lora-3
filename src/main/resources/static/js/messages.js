@@ -11,26 +11,24 @@ var getMessages = function(){
             var table = document.getElementById("table");
             var header = table.createTHead();
             var headerRow = header.insertRow(0);
-            headerRow.insertCell(0).innerHTML = "<b>UUID</b>";
-            headerRow.insertCell(1).innerHTML = "<b>TMST</b>";
-            headerRow.insertCell(2).innerHTML = "<b>Data</b>";
-            headerRow.insertCell(3).innerHTML = "<b>FREQ</b>";
-            headerRow.insertCell(4).innerHTML = "<b>UserID</b>";
-            headerRow.insertCell(5).innerHTML = "<b>Source</b>";
-            headerRow.insertCell(6).innerHTML = "<b>Topic</b>";
-            headerRow.insertCell(7).innerHTML = "<b>Size</b>";
+            headerRow.insertCell(0).innerHTML = "<b>TMST</b>";
+            headerRow.insertCell(1).innerHTML = "<b>Data</b>";
+            headerRow.insertCell(2).innerHTML = "<b>FREQ</b>";
+            headerRow.insertCell(3).innerHTML = "<b>UserID</b>";
+            headerRow.insertCell(4).innerHTML = "<b>Source</b>";
+            headerRow.insertCell(5).innerHTML = "<b>Topic</b>";
+            headerRow.insertCell(6).innerHTML = "<b>Size</b>";
 
             var foot = table.createTFoot();
             for (var i = 0; i < data.length; i++) {
                 var row = foot.insertRow(i);
-                row.insertCell(0).innerHTML = data[i]["uuid"].substring(0, 8);
-                row.insertCell(1).innerHTML = data[i]["tmst"];
-                row.insertCell(2).innerHTML = data[i]["data"];
-                row.insertCell(3).innerHTML = data[i]["freq"];
-                row.insertCell(4).innerHTML = data[i]["userID"];
-                row.insertCell(5).innerHTML = data[i]["source"];
-                row.insertCell(6).innerHTML = data[i]["topic"];
-                row.insertCell(7).innerHTML = data[i]["size"];
+                row.insertCell(0).innerHTML = data[i]["tmst"];
+                row.insertCell(1).innerHTML = data[i]["data"];
+                row.insertCell(2).innerHTML = data[i]["freq"];
+                row.insertCell(3).innerHTML = data[i]["userID"];
+                row.insertCell(4).innerHTML = data[i]["source"];
+                row.insertCell(5).innerHTML = data[i]["topic"];
+                row.insertCell(6).innerHTML = data[i]["size"];
             }
         }
     };

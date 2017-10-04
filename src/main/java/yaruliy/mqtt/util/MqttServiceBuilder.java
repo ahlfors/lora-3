@@ -7,8 +7,8 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class MqttServiceBuilder {
     public static MqttClient connect(String BROKER_URL, String CLIENT_ID) throws MqttException {
         System.out.println("----------------connected----------------" +
-                "\nBROKER_URL=" + BROKER_URL +
-                "\nCLIENT_ID=" + CLIENT_ID);
+                "\n|BROKER_URL=" + BROKER_URL +
+                "\n|CLIENT_ID=" + CLIENT_ID);
         System.out.println("-----------------------------------------");
 
         MqttClient client = new MqttClient(BROKER_URL, CLIENT_ID, new MemoryPersistence());

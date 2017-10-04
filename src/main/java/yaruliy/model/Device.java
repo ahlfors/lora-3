@@ -1,9 +1,7 @@
 package yaruliy.model;
-import com.datastax.driver.core.LocalDate;
 import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Table;
-
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,12 +13,12 @@ public class Device {
     @Column private double longitude;
     @Column private double latitude;
     @Column private String lastUsedGateway;
-    @Column private LocalDate lastUsedGatewayDate;
+    @Column private Date lastUsedGatewayDate;
 
-    public LocalDate getLastUsedGatewayDate() {
+    public Date getLastUsedGatewayDate() {
         return lastUsedGatewayDate;
     }
-    public void setLastUsedGatewayDate(LocalDate lastUsedGatewayDate) {
+    public void setLastUsedGatewayDate(Date lastUsedGatewayDate) {
         this.lastUsedGatewayDate = lastUsedGatewayDate;
     }
     public String getLastUsedGateway() { return lastUsedGateway; }
