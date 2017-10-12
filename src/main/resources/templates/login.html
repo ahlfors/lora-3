@@ -13,27 +13,12 @@
 </head>
 <body>
     <div class="main-container">
-        <form th:action="@{/login}" method="post">
-            <h2>Login</h2>
-            <p th:if="${loginError}">Wrong user or password!!!</p>
-            <table>
-                <tr>
-                    <td><input class="column" name="username" id="username"
-                               placeholder="Enter your Username" value="login"/></td>
-                </tr>
-                <tr>
-                    <td><input type="password" class="column" name="password" id="password"
-                               placeholder="Enter your Password" value="pass"/></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input name="submit" type="submit" value="login" id="submit"/>
-                        <input name="registration" type="button" value="registration" id="registration"
-                               onclick="window.location='/registration';"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
+        <div>
+            <label for="username">Username:</label><input id="username" class="column" name="username" value="login"><br/>
+            <label for="password">Password:</label><input id="password" class="column" name="password" value="pass"><br/>
+            <button id="login-button">Login</button>
+        </div>
+        <div id="reg-text-result" class="text-result"></div>
     </div>
 </body>
 </html>

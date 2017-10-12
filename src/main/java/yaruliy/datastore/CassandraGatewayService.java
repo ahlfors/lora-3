@@ -7,11 +7,9 @@ import com.datastax.driver.mapping.MappingManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import yaruliy.model.Gateway;
-
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 public class CassandraGatewayService {

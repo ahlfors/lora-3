@@ -1,4 +1,4 @@
-package yaruliy.config;
+package yaruliy.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -7,20 +7,29 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.access.AccessDeniedHandler;
-import yaruliy.security.UDService;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UDService udService;
-    private final AccessDeniedHandler accessDeniedHandler;
+    private final LoraAuthEntryPoint authenticationEntryPoint;
+    private final LoraAuthFailureHandler authenticationFailureHandler;
+    private final LoraAuthSuccessHandler authSuccessHandler;
+    private final LoraFilter loraFilter;
 
     @Autowired
-    public WebSecurityConfig(UDService udService, AccessDeniedHandler accessDeniedHandler) {
+    public WebSecurityConfig(UDService udService,
+                             LoraAuthEntryPoint authenticationEntryPoint,
+                             LoraAuthFailureHandler authenticationFailureHandler,
+                             LoraAuthSuccessHandler loraAuthSuccessHandler,
+                             LoraFilter loraFilter) {
         this.udService = udService;
-        this.accessDeniedHandler = accessDeniedHandler;
+        this.authenticationEntryPoint = authenticationEntryPoint;
+        this.authenticationFailureHandler = authenticationFailureHandler;
+        this.authSuccessHandler = loraAuthSuccessHandler;
+        this.loraFilter = loraFilter;
     }
 
     @Autowired
@@ -35,7 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         https.csrf().disable().authorizeRequests()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/lora/**").permitAll()
                 .antMatchers("/map/**").permitAll()
                 .antMatchers("/device/**").permitAll()
                 .antMatchers("/user/**").permitAll()
@@ -43,22 +51,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .anyRequest().authenticated()
+                .antMatchers("/lora/**").hasRole("USER")
                 .antMatchers("/messages").hasRole("USER")
                 .antMatchers("/devices").hasRole("USER")
                 .antMatchers("/").hasRole("USER")
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .loginProcessingUrl("/login")
-                    .failureUrl("/login-error")
-                    .defaultSuccessUrl("/devices")
-                    .permitAll()
-                .and()
-                    .logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/login")
-                    .permitAll()
-                .and()
-                    .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .and();
+        https.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
+        https.formLogin().successHandler(authSuccessHandler);
+        https.formLogin().failureHandler(authenticationFailureHandler);
+        https.formLogin().defaultSuccessUrl("/devices", true);
+        https.httpBasic().disable();
+        https.addFilterAfter(loraFilter, BasicAuthenticationFilter.class);
     }
 }

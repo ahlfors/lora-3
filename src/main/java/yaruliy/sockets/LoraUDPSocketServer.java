@@ -84,14 +84,14 @@ public class LoraUDPSocketServer implements SocketServer{
 
     @Override
     public void init() {
-        try { socket = new DatagramSocket(new InetSocketAddress(address, 40000)); }
+        try { socket = new DatagramSocket(new InetSocketAddress(address, 40001)); }
         catch (SocketException e) { e.printStackTrace(); }
     }
 
     @PostConstruct
     public void setSocketAddres(){
         System.out.println("os.version: {" + System.getProperty("os.version") + "}");
-        if(System.getProperty("os.version").equals("4.10.0-35-generic"))
+        if(System.getProperty("os.version").equals("4.10.0-37-generic"))
             this.address = "127.0.0.1";
         else this.address = "ec2-34-210-69-19.us-west-2.compute.amazonaws.com";
         System.out.println("socket.address: " + this.address);

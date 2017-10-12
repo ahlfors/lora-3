@@ -3,7 +3,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import yaruliy.datastore.UserService;
 import yaruliy.model.User;
-
 import java.util.List;
 
 @RestController

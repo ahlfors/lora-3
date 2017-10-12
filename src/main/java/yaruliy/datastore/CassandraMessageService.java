@@ -87,7 +87,5 @@ public class CassandraMessageService implements MessageService {
     }
 
     @PostConstruct
-    public void postConstruct() {
-        prepareDataBase();
-    }
+    public void postConstruct() { prepareDataBase(); }
 }

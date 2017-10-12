@@ -14,4 +14,6 @@ table th, td {
 
 .column{
     width: 400px;
+    padding: 3px;
+    margin: 5px;
 }
