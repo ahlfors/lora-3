@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
     getMessages();
+    document.getElementById("messages").addEventListener("click", function(){ window.location=shapeURL("/messages"); });
 });
 
 var getMessages = function(){
@@ -28,11 +29,7 @@ var getMessages = function(){
             }
         }
     };
-    console.log();
-    request.open("GET", "/lora/devices");
-    request.send();
-};
 
-var time = function(ms){
-    return new Date(ms).toString();
+    request.open("GET", shapeURL("/lora/devices"));
+    request.send();
 };

@@ -3,6 +3,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import yaruliy.datastore.UserService;
 import yaruliy.model.User;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -35,4 +39,13 @@ public class UserController{
         this.userService.saveUser(user);
         return "success";
     }
+
+    /*@RequestMapping(value="/token")
+    public String getCarById(HttpServletResponse response, HttpServletRequest request) {
+        response.setHeader("Authorization", "Bearer " + "blablabla");
+        request.setAttribute("Authorization","Bearer " + "blablabla");
+        //try { response.sendRedirect("/login?138123"); }
+        //catch (IOException e) { e.printStackTrace(); }
+        return "redirect:/lora22";
+    }*/
 }

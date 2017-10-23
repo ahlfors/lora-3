@@ -39,7 +39,3 @@ var saveUser = function(){
     request.open("POST", "/user/add");
     request.send(data);
 };
-
-var printResult = function(message){
-    document.getElementById("reg-text-result").innerHTML = message;
-};

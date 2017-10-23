@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
     getMessages();
+    document.getElementById("devices").addEventListener("click", function(){ window.location=shapeURL("/devices"); });
 });
 
 var getMessages = function(){
@@ -32,6 +33,6 @@ var getMessages = function(){
             }
         }
     };
-    request.open("GET", "/lora/messages", false);
+    request.open("GET", shapeURL("/lora/messages"), false);
     request.send();
 };

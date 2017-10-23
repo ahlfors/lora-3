@@ -1,4 +1,4 @@
-package yaruliy.security;
+package yaruliy.secutiry2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import yaruliy.datastore.UserService;
 import yaruliy.model.User;
@@ -15,7 +16,7 @@ import java.util.List;
 
 
 @Service
-
+@Component
 public class UDService implements UserDetailsService {
     private UserService userService;
     @Autowired public void setUserService(UserService userService) { this.userService = userService; }

@@ -46,6 +46,7 @@ public class CassandraGatewayService {
         MappingManager manager = new MappingManager(session);
         Mapper<Gateway> mapper = manager.mapper(Gateway.class);
         ResultSet results = session.execute(query);
+        System.out.println("MAC: " + mac);
         Gateway result = mapper.map(results).iterator().next();
         if(result == null) return new Gateway();
         return result;

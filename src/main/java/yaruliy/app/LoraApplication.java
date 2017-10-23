@@ -2,7 +2,10 @@ package yaruliy.app;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import yaruliy.mqtt.MainMqttService;
+import yaruliy.secutiry2.UDService;
 import yaruliy.sockets.SocketServer;
 
 @SpringBootApplication(scanBasePackages = "yaruliy")
@@ -18,4 +21,10 @@ public class LoraApplication {
 	    socketServer.init();
 	    socketServer.start();
 	}
+
+    @Autowired
+    public void authenticationManager(AuthenticationManagerBuilder builder,
+                                      UDService service) throws Exception {
+        builder.userDetailsService(service).passwordEncoder(new BCryptPasswordEncoder());
+    }
 }

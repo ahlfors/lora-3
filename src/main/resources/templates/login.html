@@ -10,15 +10,17 @@
           href="../static/css/login.css"/>
     <script type="text/javascript" th:src="@{/js/login.js}"
             src="../static/js/login.js"></script>
+    <script type="text/javascript" th:src="@{/js/util.js}"
+            src="../static/js/util.js"></script>
 </head>
 <body>
     <div class="main-container">
+        <div id="reg-text-result" class="text-result"></div>
         <div>
             <label for="username">Username:</label><input id="username" class="column" name="username" value="login"><br/>
             <label for="password">Password:</label><input id="password" class="column" name="password" value="pass"><br/>
             <button id="login-button">Login</button>
         </div>
-        <div id="reg-text-result" class="text-result"></div>
     </div>
 </body>
 </html>

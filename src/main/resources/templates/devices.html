@@ -8,6 +8,8 @@
           href="../static/css/main.css"/>
     <script type="text/javascript" th:src="@{/js/devices.js}"
             src="../static/js/devices.js"></script>
+    <script type="text/javascript" th:src="@{/js/util.js}"
+            src="../static/js/util.js"></script>
 </head>
 <body>
     <div class="main-container">
@@ -15,8 +17,8 @@
     </div>
     <div class="button-container">
         <input name="settings" type="button" value="Settings" onclick="window.location='/settings';"/>
-        <input name="messages" type="button" value="Messages" onclick="window.location='/messages';"/>
-        <input name="messages" type="button" value="Logout" onclick="window.location='/logout';"/>
+        <input id="messages" name="messages" type="button" value="Messages"/>
+        <input name="logout" type="button" value="Logout" onclick="window.location='/logout';"/>
     </div>
 </body>
 </html>
